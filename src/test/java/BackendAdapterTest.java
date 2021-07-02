@@ -1,4 +1,4 @@
-import com.alisher.filter.adapter.BackendAdapter;
+import com.alisher.filter.adapter.FilterBackendAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -17,14 +17,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RequiredArgsConstructor
 public class BackendAdapterTest {
     @Autowired
-    private BackendAdapter backendAdapter;
-    @Autowired
-    private RestTemplate restTemplate;
+    private FilterBackendAdapter filterBackendAdapter;
 
     @Test
     public void outputTest() {
-        log.info("[request body] - " + backendAdapter.getRequests().getBody());
-        assertThat(backendAdapter.getRequests().getStatusCode()).isEqualTo(HttpStatus.OK);
+        String word = "something";
+        log.info("[request body] - " + filterBackendAdapter.cleanObscene(word));
+        assertThat(filterBackendAdapter.cleanObscene(word).getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
 }

@@ -1,19 +1,21 @@
 package com.alisher.filter.controller;
 
-import com.alisher.filter.adapter.BackendAdapter;
+import com.alisher.filter.adapter.FilterBackendAdapter;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@Slf4j
+@RequestMapping("/filter")
 public class FilterEndpointController {
-    private final BackendAdapter backendAdapter;
+    private final String CLEAN_OBSCENE_WORD_URL = "/clean";
+    private final FilterBackendAdapter filterBackendAdapter;
 
-    @GetMapping("/")
-    public String getRequest() {
-        return backendAdapter.getRequests().getBody();
+    @GetMapping(CLEAN_OBSCENE_WORD_URL)
+    public String getRequest(@RequestParam String word) {
+        return filterBackendAdapter.cleanObscene(word).getBody();
     }
 }
