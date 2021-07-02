@@ -17,10 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RequiredArgsConstructor
 public class BackendAdapterTest {
     @Autowired
-    FilterBackendAdapter filterBackendAdapter;
-
-    @Autowired
-    private RestTemplate restTemplate;
+    private FilterBackendAdapter filterBackendAdapter;
 
     @Test
     public void outputTest() {
